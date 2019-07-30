@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import ModalAddTodo from "../Main/ModalAddTodo";
+import SearchBar from "./SearchBar";
 
 const NavStyled = styled.nav`
   display: flex;
@@ -15,9 +16,7 @@ const Nav = () => {
         Todo App
       </h1>
       <ModalAddTodo />
-      <div>
-        <input /> <i className="fas fa-search" />
-      </div>
+      <SearchBar />
     </NavStyled>
   );
 };

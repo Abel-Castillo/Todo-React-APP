@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import moment from "moment";
 import { useDispatch } from "react-redux";
 import { newTodo } from "../../redux/actions";
 import DatePicker from "react-datepicker";
@@ -56,9 +55,9 @@ const ModalAddTodo = () => {
               </button>
             </div>
             <div className="modal-body">
-              <label for="newTask">Task</label>
+              <label htmlFor="newTask">Task</label>
               <input id="newTask" type="text" />
-              <label for="dueDate">Task Due Date</label>
+              <label htmlFor="dueDate">Task Due Date</label>
               <DatePicker
                 id="dueDate"
                 selected={date.startDate}

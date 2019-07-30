@@ -1,14 +1,10 @@
-const todosDB = [
-  {
-    completed: false,
-    task: "Take the trash out",
-    id: "12ind"
-  },
-  {
-    completed: true,
-    task: "Wash the car.",
-    id: "1m9dk"
+const todosDB = () => {
+  const db = JSON.parse(localStorage.getItem("todosDB"));
+  if (db) {
+    return db;
+  } else {
+    return [];
   }
-];
+};
 
-export default todosDB;
+export default todosDB();

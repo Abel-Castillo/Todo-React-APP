@@ -19,3 +19,10 @@ export const removeTodoTask = id => {
     id
   };
 };
+
+export const searchTodoTask = searchValue => {
+  return {
+    type: "SEARCH_WORD",
+    searchValue
+  };
+};

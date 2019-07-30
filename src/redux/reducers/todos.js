@@ -4,7 +4,7 @@ import moment from "moment";
 const todos = (state = todosDB, action) => {
   switch (action.type) {
     case "ADD_TODO":
-      return [
+      const newTodo = [
         {
           completed: false,
           task: action.task,
@@ -14,18 +14,30 @@ const todos = (state = todosDB, action) => {
         },
         ...state
       ];
-    case "TOGGLE_COMPLETE_TASK":
-      const todos = [...state];
-      console.log(todos);
-      const todoIndex = todos.findIndex(todo => todo.id === action.id);
-      console.log(todoIndex);
-      todos[todoIndex].completed = !state[todoIndex].completed;
-      return [...todos];
-    case "REMOVE_TODO":
-      const todo = [...state];
-      const updateTodo = todo.filter(todo => todo.id !== action.id);
-      return [...updateTodo];
 
+      localStorage.setItem("todosDB", JSON.stringify(newTodo));
+      const data = JSON.parse(localStorage.getItem("todosDB"));
+      console.log(data);
+      return (state = [...data]);
+    case "TOGGLE_COMPLETE_TASK":
+      const todoIndex = state.findIndex(todo => todo.id === action.id);
+      state[todoIndex].completed = !state[todoIndex].completed;
+
+      localStorage.setItem("todosDB", JSON.stringify(state));
+      console.log(todoIndex, state);
+      return (state = [...state]);
+    case "REMOVE_TODO":
+      const updateTodo = state.filter(todo => todo.id !== action.id);
+      localStorage.setItem("todosDB", JSON.stringify(updateTodo));
+      return (state = updateTodo);
+    case "SEARCH_WORD":
+      const dataTodo = JSON.parse(localStorage.getItem("todosDB"));
+
+      const filteredTodos = dataTodo.filter(todo =>
+        todo.task.toLowerCase().includes(action.searchValue.toLowerCase())
+      );
+
+      return (state = [...filteredTodos]);
     default:
       return state;
   }

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+
 import Table from "./Table";
 
 const MainStyled = styled.main`
@@ -48,26 +48,8 @@ const MainStyled = styled.main`
 `;
 
 const Main = props => {
-  const todos = useSelector(state => state.todos);
-  console.log(todos);
-  const [addTodo, setAddTodo] = useState({ addTodo: false });
-  const toggleTodoHandler = () => {
-    setAddTodo({ addTodo: !addTodo.addTodo });
-  };
-
   return (
     <MainStyled>
-      <div>
-        {addTodo.addTodo && (
-          <div className="addTodo">
-            <input type="text" placeholder="New Todo" />
-            <button className="btn add">Add</button>
-            <button className="btn cancel" onClick={toggleTodoHandler}>
-              Cancel
-            </button>
-          </div>
-        )}
-      </div>
       <Table />
     </MainStyled>
   );
